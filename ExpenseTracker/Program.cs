@@ -20,23 +20,16 @@
         }
         public void AddTransaction()
         {
-            Console.WriteLine("Enter Title:");
+            Console.WriteLine("Enter the Title:");
             string title = Console.ReadLine();
-            Console.WriteLine("Enter Description");
+            Console.WriteLine("Enter the Description:");
             string description = Console.ReadLine();
-            Console.WriteLine("Enter Amount of Expense");
+            Console.WriteLine("Enter the Paid Amount:");
             int amount = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter the Date (DD/MM/YYY): ");
             DateTime date = DateTime.Parse(Console.ReadLine());
 
-            Transaction transaction = new Transaction()
-            {
-                Title = title,
-                Description = description,
-                Amount = amount,
-                Date = date
-            };
-
+            Transaction transaction = new Transaction() { Title=title,Description = description, Amount=amount, Date=date };  
             transactions.Add(transaction);
         }
 
@@ -44,11 +37,11 @@
         {
             Console.WriteLine("Expense Transactions:");
             Console.WriteLine("Title \t Description \t Amount \t Date");
-            foreach (Transaction transaction in transactions)
+            foreach (Transaction t in transactions)
             {
-                if (transaction.Amount < 0)
+                if (t.Amount < 0)
                 {
-                    Console.WriteLine($"{transaction.Title} \t {transaction.Description} \t {transaction.Amount} \t {transaction.Date.ToShortDateString()}");
+                    Console.WriteLine($"{t.Title} \t {t.Description} \t {t.Amount} \t {t.Date.ToShortDateString()}");
                 }
             }
         }
@@ -57,11 +50,11 @@
         {
             Console.WriteLine("Income Transactions:");
             Console.WriteLine("Title \t Description \t Amount \t Date");
-            foreach (Transaction transaction in transactions)
+            foreach (Transaction t in transactions)
             {
-                if (transaction.Amount > 0)
+                if (t.Amount > 0)
                 {
-                    Console.WriteLine($"{transaction.Title} \t {transaction.Description} \t{transaction.Amount} \t {transaction.Date.ToShortDateString()}");
+                    Console.WriteLine($"{t.Title} \t {t.Description} \t{t.Amount} \t {t.Date.ToShortDateString()}");
                 }
             }
         }
@@ -71,15 +64,15 @@
             int totalIncome = 0;
             int totalExpense = 0;
 
-            foreach (Transaction transaction in transactions)
+            foreach (Transaction t in transactions)
             {
-                if (transaction.Amount > 0)
+                if (t.Amount > 0)
                 {
-                    totalIncome += transaction.Amount;
+                    totalIncome = t.Amount;
                 }
                 else
                 {
-                    totalExpense += Math.Abs(transaction.Amount);
+                    totalExpense = Math.Abs(t.Amount);
                 }
             }
 
@@ -93,7 +86,7 @@
     {
         static void Main(string[] args)
         {
-            Tracker track = new Tracker();
+            Tracker obj = new Tracker();
             string ans = "";
             do
             {
@@ -111,22 +104,22 @@
                 {
                     case 1:
                         {
-                            track.AddTransaction();
+                            obj.AddTransaction();
                             break;
                         }
                     case 2:
                         {
-                            track.ViewExpense();
+                            obj.ViewExpense();
                             break;
                         }
                     case 3:
                         {
-                            track.ViewIncome();
+                            obj.ViewIncome();
                             break;
                         }
                     case 4:
                         {
-                            track.ShowBalance();
+                            obj.ShowBalance();
                             break;
                         }
                     default:
